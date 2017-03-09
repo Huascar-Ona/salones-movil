@@ -4,9 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
+              'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $http) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,9 +21,19 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       StatusBar.styleDefault();
     }
   });
+
+  delete $http.defaults.headers['get']["If-Modified-Since"]
+  $http.defaults.headers.common.Authorization = 'Token e103b270bf306a108dff233066abb6eaa380fc11';
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function(
+  $stateProvider, $authProvider, $urlRouterProvider,
+  APIConfig, localStorageServiceProvider) {
+
+  $authProvider.configure({
+    apiUrl: APIConfig.PREFIX
+  });
+
   $stateProvider
 
     .state('app', {
@@ -32,11 +43,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.servicio', {
+    url: '/servicios',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/servicios.html',
+        controller: 'ServiciosCtrl'
       }
     }
   })
