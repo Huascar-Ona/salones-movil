@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
   });
 
   delete $http.defaults.headers['get']["If-Modified-Since"]
-  $http.defaults.headers.common.Authorization = 'Token e103b270bf306a108dff233066abb6eaa380fc11';
+  $http.defaults.headers.common.Authorization = 'Token fce7f2513f4744b181da776e5d3bacc315a55ce6';
 })
 
 .config(function(
@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
     controller: 'AppCtrl'
   })
 
-  .state('app.servicio', {
+  .state('app.servicios', {
     url: '/servicios',
     views: {
       'menuContent': {
@@ -53,14 +53,26 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.servicio', {
+    url: '/servicios/:servicioId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/servicio.html',
+        controller: 'ServicioCtrl'
+      }
+    }
+  })
+
+  .state('app.galerias', {
+      url: '/galerias',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/galerias.html',
+          controller: 'GaleriasCtrl'
         }
       }
     })
+
     .state('app.playlists', {
       url: '/playlists',
       views: {

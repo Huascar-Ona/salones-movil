@@ -1,7 +1,6 @@
-<ion-view view-title="Servicios">
+<ion-view view-title="Servicio">
   <ion-content>
     <h1>Servicio</h1>
-    <ion-item ng-repeat="servicio in servicios | orderBy:'id'" href="#/app/servicios/{{servicio.id}}">
       <div class="servicio">
         #{{ servicio.id }}
         <p class="servicio-descripcion">
@@ -13,6 +12,5 @@
             {{ servicio.attributes.precio }}
         </p>
       </div>
-    </ion-item>
   </ion-content>
 </ion-view>

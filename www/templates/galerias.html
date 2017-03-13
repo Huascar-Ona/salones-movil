@@ -1,0 +1,21 @@
+<ion-view view-title="Galeria">
+  <ion-content>
+    <h1>Galerias</h1>
+    <div ng-repeat="galeria in galerias | orderBy:'id'">
+      <div>
+        <img class="galeria-imagen" ng-src="{{galeria.attributes.imagen}}">
+      </div>
+      <div class="galeria">
+        #{{ galeria.id }}
+        <p class="galeria-descripcion">
+          <span>Descripcion:</span>
+            {{ galeria.attributes.descripcion }}
+        </p>
+        <p class="galeria-precio">
+          <span>Puntuacion Promedio:</span>
+            {{ galeria.attributes.puntuacion_promedio }}
+        </p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

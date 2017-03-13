@@ -51,8 +51,22 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
+.controller('GaleriasCtrl', function($scope, API) {
+  API.get('galerias/').then(function(response) {
+    $scope.galerias = response.data.data;
+    console.log($scope.galerias[0].type)
+  });
+})
+
+.controller('ServicioCtrl', function($scope, $stateParams, API) {
+  API.get('servicios/detail/' + $stateParams.servicioId + '/').then(function(response) {
+    $scope.servicio = response.data.data;
+    console.log($stateParams.servicioId)
+  });
+})
+
 .controller('ServiciosCtrl', function($scope, API) {
-  API.get('servicios/1/').then(function(response) {
+  API.get('servicios/').then(function(response) {
     $scope.servicios = response.data.data;
     console.log($scope.servicios[0].type)
   });
