@@ -54,6 +54,7 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
   })
 
   .state('app.servicio', {
+    cache: false,
     url: '/servicios/:servicioId',
     views: {
       'menuContent': {
@@ -64,6 +65,7 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
   })
 
   .state('app.galerias', {
+      cache: false,
       url: '/galerias',
       views: {
         'menuContent': {
@@ -93,5 +95,5 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/galerias');
 });
