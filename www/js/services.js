@@ -1,7 +1,7 @@
 angular.module('starter.services', [])
 
 .constant('APIConfig', {
-  PREFIX: 'http://' + 'salones.pe:8079' + '/api/'
+  PREFIX: 'http://' + 'salones.pe:8069' + '/api/'
 })
 
 .service('API', function($http, APIConfig) {

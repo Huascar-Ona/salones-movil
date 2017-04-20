@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
-              'starter.controllers', 'starter.services'])
+              'starter.controllers', 'starter.services', 'ion-gallery'])
 
 .run(function($ionicPlatform, $http) {
   $ionicPlatform.ready(function() {
@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
   });
 
   delete $http.defaults.headers['get']["If-Modified-Since"]
-  $http.defaults.headers.common.Authorization = 'Token fce7f2513f4744b181da776e5d3bacc315a55ce6';
+  $http.defaults.headers.common.Authorization = 'Token 8faca8709720bda7de2edce7e8553d6355132204';
 })
 
 .config(function(
@@ -54,6 +54,7 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
   })
 
   .state('app.servicio', {
+    cache: false,
     url: '/servicios/:servicioId',
     views: {
       'menuContent': {
@@ -63,7 +64,29 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
     }
   })
 
+  .state('app.productos', {
+    url: '/productos',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/productos.html',
+        controller: 'ProductosCtrl'
+      }
+    }
+  })
+
+  .state('app.producto', {
+    cache: false,
+    url: '/productos/:productoId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/producto.html',
+        controller: 'ProductoCtrl'
+      }
+    }
+  })
+
   .state('app.galerias', {
+      cache: false,
       url: '/galerias',
       views: {
         'menuContent': {
@@ -93,5 +116,5 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/galerias');
 });

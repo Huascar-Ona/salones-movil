@@ -52,22 +52,41 @@ angular.module('starter.controllers', [])
 })
 
 .controller('GaleriasCtrl', function($scope, API) {
+  $scope.galerias = [];
+
   API.get('galerias/').then(function(response) {
-    $scope.galerias = response.data.data;
-    console.log($scope.galerias[0].type)
+    $scope.galerias = [];
+    console.log(response.data.data)
+    angular.forEach(response.data.data, function(value, key){
+      $scope.galerias.push({src: value.attributes.imagen, sub: value.attributes.descripcion})
+    });
   });
 })
 
 .controller('ServicioCtrl', function($scope, $stateParams, API) {
   API.get('servicios/detail/' + $stateParams.servicioId + '/').then(function(response) {
     $scope.servicio = response.data.data;
-    console.log($stateParams.servicioId)
+    console.log($scope.servicio)
   });
 })
 
 .controller('ServiciosCtrl', function($scope, API) {
   API.get('servicios/').then(function(response) {
     $scope.servicios = response.data.data;
-    console.log($scope.servicios[0].type)
+    console.log($scope.servicios[0])
+  });
+})
+
+.controller('ProductoCtrl', function($scope, $stateParams, API) {
+  API.get('productos/detail/' + $stateParams.productoId + '/').then(function(response) {
+    $scope.producto = response.data.data;
+    console.log($scope.producto)
+  });
+})
+
+.controller('ProductosCtrl', function($scope, $stateParams, API) {
+  API.get('productos/').then(function(response) {
+    $scope.productos = response.data.data;
+    console.log(response.data.data[0])
   });
 });
