@@ -1,16 +1,39 @@
-<ion-view view-title="Servicio">
+<ion-view view-title="">
   <ion-content>
-    <h1>Servicio</h1>
-      <div class="servicio">
-        #{{ servicio.id }}
-        <p class="servicio-descripcion">
-          <span>Nombre:</span>
-            {{ servicio.attributes.nombre }}
-        </p>
-        <p class="servicio-precio">
-          <span>Precio:</span>
-            {{ servicio.attributes.precio }}
-        </p>
+    <div class="row item-box">
+      <div class="col-50">
+        <span class="bold">{{servicio.attributes.nombre}}</span>
       </div>
+      <div class="col-50 price">
+        <span class="pull-right bold">{{servicio.attributes.precio}}</span>
+      </div>
+    </div>
+
+    <div class="item-box-2">
+      <div class="">
+        {{servicio.attributes.duracion}}
+      </div>
+      </br>
+      <div class="">
+        {{servicio.attributes.observaciones}}
+      </div>
+    </div>
+
+    <div class="item-box-3">
+      <div class="input-area">
+        <label for="">Selecciona profesional</label>
+        <input class="placeholders" type="text" name="" value="" placeholder="Primer empleado disponible">
+      </div>
+      <div class="input-area">
+        <label for="">Reserve día</label>
+        <input class="placeholders" type="text" name="" value="" placeholder="00/00/000">
+      </div>
+    </div>
+
+    <div style="bottom-green">
+        <div class="green-bottom-button text-center">
+          <h4>CONTINUAR</h4>
+        </div>
+    </div>
   </ion-content>
 </ion-view>

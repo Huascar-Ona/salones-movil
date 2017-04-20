@@ -1,1 +1,122 @@
 /* Empty. Add your own CSS if you like */
+.bar-green {
+  background-color: #1ACE9E;
+  color: white;
+}
+
+.white {
+  color: white;
+}
+
+.items {
+  padding: 16px;
+  font-size: 16px;
+  height: 50px;
+  background-color: #F8F8F8;
+}
+
+.item-detail {
+  padding: 16px;
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
+}
+
+.item-info {
+  padding-top: 20px;
+}
+
+.float-right {
+  float: right;
+}
+
+.down-color {
+  color: #b5b1b1;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.pull-right {
+  float: right;
+}
+
+.item {
+  border: none;
+}
+
+.button-green {
+  background-color: #1ACE9E;
+  color: white;
+  font-weight: bold;
+}
+
+.button-green:hover {
+  background-color: #17bd90;
+  color: white;
+  font-weight: bold;
+}
+
+.item-box {
+  padding: 20px 10px 0 10px;
+  background-color: #323232;
+  color: white;
+  height: 60px;
+}
+
+.item-box-2 {
+  padding: 20px 10px 20px 10px;
+  color: #878787;
+}
+
+.item-box-3 {
+  padding: 20px 10px 10px;
+  background-color: #F8F8F8;
+}
+
+.input-area {
+  padding-bottom: 15px;
+}
+
+.input-area input {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.placeholders {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.green-bottom-button {
+  padding-top: 5px;
+  background-color: #17bd90;
+  height: 50px;
+}
+
+.green-bottom-button h4 {
+  color: white;
+}
+
+.ion-list-items ion-item {
+  border: 1px solid rgb(223, 223, 223);
+}
+
+.item.activated {
+  background-color: #1ACE9E;
+  color: white;
+}
+
+.item .item-content.activated {
+  background-color: #1ACE9E;
+  color: white;
+}
+
+.icon.ion-ios-arrow-back {
+  color: white;
+}
+
+.default-title {
+  color: white;
+}
