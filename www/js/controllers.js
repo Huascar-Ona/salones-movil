@@ -64,16 +64,41 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ServicioCtrl', function($scope, $stateParams, API) {
+
+  API.get('empleados/').then(function(response) {
+    $scope.empleados = response.data.data;
+    console.log($scope.empleados)
+  });
+  API.get('locales/').then(function(response) {
+    $scope.locales = response.data.data;
+    console.log($scope.locales)
+  });
   API.get('servicios/detail/' + $stateParams.servicioId + '/').then(function(response) {
     $scope.servicio = response.data.data;
     console.log($scope.servicio)
   });
+
+
+      var resevaAttr = { data: {
+                          servicio: JSON.stringify({id: 1, type: 'Servicios'}),
+                          fecha: '2017-04-30T16:00',
+                          local: JSON.stringify({id: 1, type: 'Locales'})
+                         }
+                        };
+
+    $scope.crearReserva = function() {
+      API.post('reservas/create/', resevaAttr).then(function(response) {
+        console.log('ola');
+      });
+    };
+
 })
 
 .controller('ServiciosCtrl', function($scope, API) {
-  API.get('servicios/').then(function(response) {
-    $scope.servicios = response.data.data;
-    console.log($scope.servicios[0])
+  $scope.reserva = {};
+  API.get('servicios/categorias/').then(function(response) {
+    $scope.serviciosCategorias = response.data.data;
+    console.log($scope.serviciosCategorias[0])
   });
 })
 
@@ -85,8 +110,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProductosCtrl', function($scope, $stateParams, API) {
-  API.get('productos/').then(function(response) {
-    $scope.productos = response.data.data;
+  API.get('productos/categorias/').then(function(response) {
+    $scope.productosCategorias = response.data.data;
     console.log(response.data.data[0])
   });
 });

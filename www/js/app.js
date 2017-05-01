@@ -23,6 +23,9 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
   });
 
   delete $http.defaults.headers['get']["If-Modified-Since"]
+  delete $http.defaults.headers['post']["If-Modified-Since"]
+
+  $http.defaults.headers.post['Content-Type'] = 'application/vnd.api+json';
   $http.defaults.headers.common.Authorization = 'Token 8faca8709720bda7de2edce7e8553d6355132204';
 })
 

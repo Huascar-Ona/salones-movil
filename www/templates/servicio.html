@@ -20,18 +20,39 @@
     </div>
 
     <div class="item-box-3">
-      <div class="input-area">
-        <label for="">Selecciona profesional</label>
-        <input class="placeholders" type="text" name="" value="" placeholder="Primer empleado disponible">
+      <div class="list">
+        <label for="" class="item item-input item-select">
+          <div class="input-label">
+            Selecciona Local
+          </div>
+
+          <select ng-model="reserva.local" ng-options="local.id as local.attributes.nombre for local in locales" show-errors-for="fund">
+            <option value=""></option>
+          </select>
+        </label>
       </div>
+
+    <div class="item-box-3">
+      <div class="list">
+        <label for="" class="item item-input item-select">
+          <div class="input-label">
+            Selecciona Profesional
+          </div>
+
+          <select ng-model="reserva.empleadoSeleccionado" ng-options="empleado.id as empleado.attributes.primer_nombre for empleado in empleados" show-errors-for="fund">
+            <option value=""></option>
+          </select>
+        </label>
+      </div>
+
       <div class="input-area">
         <label for="">Reserve día</label>
-        <input class="placeholders" type="text" name="" value="" placeholder="00/00/000">
+        <input ng-class="{'has-error' : myForm.date.$invalid && (validated)}" name="date" class="date" ng-model="reserva.fecha" type="date" required>
       </div>
     </div>
 
     <div style="bottom-green">
-        <div class="green-bottom-button text-center">
+        <div class="green-bottom-button text-center" ng-click="crearReserva()">
           <h4>CONTINUAR</h4>
         </div>
     </div>
