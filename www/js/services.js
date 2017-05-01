@@ -22,8 +22,21 @@ angular.module('starter.services', [])
     });
   }
 
-  function post(resource, params) {
-    return $http.post(url(resource), params);
+  function post(resource, params, data) {
+    return $http({
+        method: 'POST',
+        url: url(resource, params),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        transformRequest: function(obj) {
+            var str = [];
+            for(var p in obj)
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            return str.join("&");
+        },
+        data: data
+    });
+    // Ahi esta para que hagas otro request que envie un payload
+    //return $http.post(url(resource), params);
   }
 
   function put(resource, id, params) {

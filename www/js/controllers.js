@@ -79,15 +79,15 @@ angular.module('starter.controllers', [])
   });
 
 
-      var resevaAttr = { data: {
+      var resevaAttr = { 
                           servicio: JSON.stringify({id: 1, type: 'Servicios'}),
                           fecha: '2017-04-30T16:00',
-                          local: JSON.stringify({id: 1, type: 'Locales'})
-                         }
+                          local: JSON.stringify({id: 1, type: 'Local'}),
+                          
                         };
 
     $scope.crearReserva = function() {
-      API.post('reservas/create/', resevaAttr).then(function(response) {
+      API.post('reservas/create/', '', resevaAttr).then(function(response) {
         console.log('ola');
       });
     };
