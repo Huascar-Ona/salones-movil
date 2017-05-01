@@ -63,7 +63,9 @@ angular.module('starter.controllers', [])
   });
 })
 
-.controller('ServicioCtrl', function($scope, $stateParams, API) {
+.controller('ServicioCtrl', function($scope, $stateParams, API, $ionicPopup) {
+
+  $scope.reserva = {};
 
   API.get('empleados/').then(function(response) {
     $scope.empleados = response.data.data;
@@ -79,16 +81,36 @@ angular.module('starter.controllers', [])
   });
 
 
-      var resevaAttr = { 
-                          servicio: JSON.stringify({id: 1, type: 'Servicios'}),
-                          fecha: '2017-04-30T16:00',
-                          local: JSON.stringify({id: 1, type: 'Local'}),
-                          
-                        };
+    function datetime(fecha, hora) {
+      var fecha = new Date(fecha);
+      var hora = new Date(hora);
 
-    $scope.crearReserva = function() {
-      API.post('reservas/create/', '', resevaAttr).then(function(response) {
-        console.log('ola');
+      return new Date(fecha.getTime() + hora.getTime());
+    };
+
+    $scope.crearReserva = function(local, empleado) {
+
+      var date2 = new Date($scope.reserva.fecha);
+      var date3 = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate()
+      var date = new Date($scope.reserva.hora);
+      var time = date.toTimeString().split(' ')[0].split(':');
+      var dateTime = date3 + "T" + time[0]+':'+time[1]
+
+      var resevaAttr = {
+                          servicio: JSON.stringify({id: empleado, type: 'Servicios'}),
+                          fecha: dateTime,
+                          local: JSON.stringify({id: local, type: 'Local'}),
+
+                        };
+      $scope.validated = true;
+      API.post('reservas/create/', '', resevaAttr).then(function successCallback(response) {
+        $ionicPopup.confirm({
+           title: "Reservacion creada exitosamente.",
+        });
+      }, function errorCallback(response) {
+        $ionicPopup.confirm({
+           title: response.data.errors[0].detail,
+        });
       });
     };
 

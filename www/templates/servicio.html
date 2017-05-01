@@ -26,9 +26,10 @@
             Selecciona Local
           </div>
 
-          <select ng-model="reserva.local" ng-options="local.id as local.attributes.nombre for local in locales" show-errors-for="fund">
+          <select ng-model="local" class="local" ng-options="local.id as local.attributes.nombre for local in locales" name="local" ng-class="{'has-error' : myForm.local.$invalid && (validated)}" required>
             <option value=""></option>
           </select>
+          <p ng-show="(validated) && myForm.local.$error.required" class="help-block">Se requiere un local.</p>
         </label>
       </div>
 
@@ -39,7 +40,7 @@
             Selecciona Profesional
           </div>
 
-          <select ng-model="reserva.empleadoSeleccionado" ng-options="empleado.id as empleado.attributes.primer_nombre for empleado in empleados" show-errors-for="fund">
+          <select ng-model="empleado" ng-options="empleado.id as empleado.attributes.primer_nombre for empleado in empleados" show-errors-for="fund" required>
             <option value=""></option>
           </select>
         </label>
@@ -49,10 +50,19 @@
         <label for="">Reserve día</label>
         <input ng-class="{'has-error' : myForm.date.$invalid && (validated)}" name="date" class="date" ng-model="reserva.fecha" type="date" required>
       </div>
+
+
+      <div class="input-area">
+        <label for="">Reserve hora</label>
+        <input ng-class="{'has-error' : myForm.date.$invalid && (validated)}" name="time" class="time" ng-model="reserva.hora" type="time" required>
+      </div>
+
+      {{datetime(reserva)}}
+
     </div>
 
     <div style="bottom-green">
-        <div class="green-bottom-button text-center" ng-click="crearReserva()">
+        <div class="green-bottom-button text-center" ng-click="crearReserva(local, empleado)">
           <h4>CONTINUAR</h4>
         </div>
     </div>
