@@ -53,4 +53,13 @@ angular.module('starter.services', [])
     put:    put,
     delete: del
   };
+})
+
+.service('CurrencyService', function() {
+  /**
+   * Actualmente hardcoded para usar soles. A futuro esta informacion vendra del API tambien
+   */
+  return {
+      currency_symbol: 'S/.'
+  }
 });

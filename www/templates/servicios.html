@@ -8,7 +8,7 @@
           <div class="col-50 price">
             <span class="ion-chevron-down down-color pull-right" ng-click="showme=true" ng-hide="showme"></span>
             <span class="ion-chevron-up down-color pull-right" ng-click="showme=false" ng-show="showme"></span>
-            <span class="pull-right bold">{{ categoria.attributes.servicios[0].precio }} $</span>
+            <span class="pull-right bold">{{ currencySymbol }} {{ categoria.attributes.servicios[0].precio }}</span>
             <span class="down-color pull-right">desde&nbsp</span>
           </div>
         </div>
@@ -19,7 +19,9 @@
             <span class="">30m</span>
           </div>
           <div class="col-50 price item-info">
-            <button class="button button-green pull-right" type="button" name="button">{{ servicio.precio }} $</button>
+            <button class="button button-green pull-right" type="button" name="button">
+              {{ currencySymbol }} {{ servicio.precio }} 
+            </button>
           </div>
         </a>
     </ion-list>

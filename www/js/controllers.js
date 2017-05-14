@@ -63,7 +63,7 @@ angular.module('starter.controllers', [])
   });
 })
 
-.controller('ServicioCtrl', function($scope, $stateParams, API, $ionicPopup) {
+.controller('ServicioCtrl', function($scope, $stateParams, API, $ionicPopup, CurrencyService) {
 
   $scope.reserva = {};
 
@@ -94,14 +94,18 @@ angular.module('starter.controllers', [])
       var date3 = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate()
       var date = new Date($scope.reserva.hora);
       var time = date.toTimeString().split(' ')[0].split(':');
-      var dateTime = date3 + "T" + time[0]+':'+time[1]
+      var dateTime = date3 + "T" + time[0]+':'+time[1];
 
       var resevaAttr = {
-                          servicio: JSON.stringify({id: empleado, type: 'Servicios'}),
-                          fecha: dateTime,
-                          local: JSON.stringify({id: local, type: 'Local'}),
+        servicio: JSON.stringify({id: $stateParams.servicioId, type: 'Servicios'}),
+        fecha: dateTime,
+        local: JSON.stringify({id: local, type: 'Local'}),
+      };
 
-                        };
+      if(typeof empleado !== 'undefined') {
+        resevaAttr['empleado'] = JSON.stringify({id: empleado, type: 'Empleado'});
+      }
+
       $scope.validated = true;
       API.post('reservas/create/', '', resevaAttr).then(function successCallback(response) {
         $ionicPopup.confirm({
@@ -116,22 +120,25 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ServiciosCtrl', function($scope, API) {
+.controller('ServiciosCtrl', function($scope, API, CurrencyService) {
   $scope.reserva = {};
+  $scope.currencySymbol = CurrencyService.currency_symbol;
   API.get('servicios/categorias/').then(function(response) {
     $scope.serviciosCategorias = response.data.data;
     console.log($scope.serviciosCategorias[0])
   });
 })
 
-.controller('ProductoCtrl', function($scope, $stateParams, API) {
+.controller('ProductoCtrl', function($scope, $stateParams, API, CurrencyService) {
+  $scope.currencySymbol = CurrencyService.currency_symbol;
   API.get('productos/detail/' + $stateParams.productoId + '/').then(function(response) {
     $scope.producto = response.data.data;
     console.log($scope.producto)
   });
 })
 
-.controller('ProductosCtrl', function($scope, $stateParams, API) {
+.controller('ProductosCtrl', function($scope, $stateParams, API, CurrencyService) {
+  $scope.currencySymbol = CurrencyService.currency_symbol;
   API.get('productos/categorias/').then(function(response) {
     $scope.productosCategorias = response.data.data;
     console.log(response.data.data[0])

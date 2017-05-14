@@ -5,18 +5,19 @@
         <span class="bold">{{producto.attributes.nombre}}</span>
       </div>
       <div class="col-50 price">
-        <span class="pull-right bold">{{producto.attributes.precio}}</span>
+        <span class="pull-right bold">{{ currencySymbol }} {{producto.attributes.precio}}</span>
       </div>
     </div>
 
-    <div class="item-box-2">
-      <div class="">
-        {{producto.attributes.duracion}}
-      </div>
-      </br>
-      <div class="">
-        {{producto.attributes.observaciones}}
+    <div class="row item-box-2">
+      <div class="row">
+        <img ng-src="{{producto.attributes.imagen}}" class="full"/>
       </div>
     </div>
+
+    <button class="button button-balanced full">
+      ADQUIRIR
+    </button>
+
   </ion-content>
 </ion-view>

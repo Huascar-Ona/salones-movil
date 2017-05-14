@@ -1,27 +1,37 @@
 <ion-view view-title="">
   <ion-content>
     <ion-list ng-repeat="categoria in productosCategorias | orderBy:'id'">
-        <div class="row items">
-          <div class="col-50">
-            <span class="bold">{{ categoria.attributes.nombre }}</span>
+      <div ng-if="categoria.attributes.productos[0].precio">
+          <div class="row items">
+            <div class="col-50">
+              <span class="bold">{{ categoria.attributes.nombre }}</span>
+            </div>
+            <div class="col-50 price">            
+              <span class="ion-chevron-down down-color pull-right" ng-click="showme=true" ng-hide="showme"></span>
+              <span class="ion-chevron-up down-color pull-right" ng-click="showme=false" ng-show="showme"></span>
+              <span class="pull-right bold">{{ currencySymbol }} {{ categoria.attributes.productos[0].precio }}</span>
+              <span class="down-color pull-right">desde&nbsp</span>
+            </div>
           </div>
-          <div class="col-50 price">
-            <span class="ion-chevron-down down-color pull-right" ng-click="showme=true" ng-hide="showme"></span>
-            <span class="ion-chevron-up down-color pull-right" ng-click="showme=false" ng-show="showme"></span>
-            <span class="pull-right bold">{{ categoria.attributes.productos[0].precio }} $</span>
-            <span class="down-color pull-right">desde&nbsp</span>
-          </div>
-        </div>
 
-        <a class="row item-detail" ng-show="showme" ng-repeat="producto in categoria.attributes.productos"  href="#/app/productos/{{producto.id}}">
-          <div class="col-50 item-info">
-            <span class="">{{ producto.nombre }}</span> </br>
-            <span class="">En stock: {{ producto.en_stock }}</span>
-          </div>
-          <div class="col-50 price item-info">
-            <img ng-src="{{producto.imagen}}" width="100px" height="100px"/>
-          </div>
-        </a>
+          <a class="row item-detail" ng-show="showme" ng-repeat="producto in categoria.attributes.productos"  href="#/app/productos/{{producto.id}}">
+            <div class="row">
+              <div class="col-90 item-info">
+                <span class="">{{ producto.nombre }}</span> </br>
+                <div ng-if="producto.en_stock == false">
+                    No Disponible
+                </div>
+                <div ng-if="producto.en_stock != false">
+                    Disponible               
+                </div>
+                <span>{{ currencySymbol }} {{ producto.precio }}</span>
+              </div>
+              <div class="col-10 item-info">
+                <img ng-src="{{producto.imagen}}" class="img-responsive"/>
+              </div>
+            </div>
+          </a>
+        </div>
     </ion-list>
   </ion-content>
 </ion-view>
