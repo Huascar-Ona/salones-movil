@@ -99,6 +99,27 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
       }
     })
 
+  .state('app.locales', {
+    url: '/locales',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/locales.html',
+        controller: 'LocalesCtrl'
+      }
+    }
+  })
+
+  .state('app.local', {
+    cache: false,
+    url: '/locales/:localId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/local.html',
+        controller: 'LocalCtrl'
+      }
+    }
+  })
+
     .state('app.playlists', {
       url: '/playlists',
       views: {

@@ -45,6 +45,7 @@ angular.module('starter.controllers', [])
   $scope.playlists = [
     { title: 'Servicios', id: 1 },
     { title: 'Galerias', id: 2 },
+    { title: 'Locales', id: 3 }
   ];
 })
 
@@ -56,7 +57,6 @@ angular.module('starter.controllers', [])
 
   API.get('galerias/').then(function(response) {
     $scope.galerias = [];
-    console.log(response.data.data)
     angular.forEach(response.data.data, function(value, key){
       $scope.galerias.push({src: value.attributes.imagen, sub: value.attributes.descripcion})
     });
@@ -135,5 +135,29 @@ angular.module('starter.controllers', [])
   API.get('productos/categorias/').then(function(response) {
     $scope.productosCategorias = response.data.data;
     console.log(response.data.data[0])
+  });
+})
+
+.controller('LocalCtrl', function($scope, $stateParams, API) {
+  API.get('locales/detail/' + $stateParams.localId + '/').then(function(response) {
+    $scope.local = response.data.data;
+    console.log($scope.local)
+  });
+})
+
+.controller('LocalesCtrl', function($scope, $stateParams, API) {
+  $scope.locales = [];
+
+  API.get('locales/').then(function(response) {
+    $scope.locales = [];
+    console.log(response.data.data);
+    angular.forEach(response.data.data, function(value, key){
+      $scope.locales.push({
+        imagen: value.attributes.imagen, 
+        direccion: value.attributes.direccion,
+        nombre: value.attributes.nombre,
+        telefono: value.attributes.telefono
+      })
+    });
   });
 });

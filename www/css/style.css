@@ -8,6 +8,11 @@
   color: white;
 }
 
+.img-responsive {
+  max-width: 100% !important;
+  max-height: 100%;
+}
+
 .items {
   padding: 16px;
   font-size: 16px;
@@ -40,6 +45,10 @@
 
 .pull-right {
   float: right;
+} 
+
+.pull-left {
+  float: left;
 }
 
 .item {
