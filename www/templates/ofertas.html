@@ -1,0 +1,17 @@
+<ion-view view-title="ofertas">
+  <ion-content>
+    <ion-list ng-repeat="oferta in ofertas | orderBy:'id'">
+    	<div class="row">
+    		<div class="col col-80">
+	            <span class="">{{ oferta.nombre }}</span> </br>
+	            <span class="">{{ oferta.servicio }}</span> </br>
+	       		<span class="">{{ oferta.estatus }}</span> </br>
+	            <span class="down-color">Vence el </span> 
+	            <span class="">{{ oferta.fecha_vencimiento }}</span> </br> 
+	        </div>
+	        <div class="col col-20">
+	            <img ng-src="{{oferta.imagen}}" class="img-responsive"/>
+	        </div>
+	    </div>
+  </ion-content>
+</ion-view>

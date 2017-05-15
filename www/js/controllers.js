@@ -45,7 +45,9 @@ angular.module('starter.controllers', [])
   $scope.playlists = [
     { title: 'Servicios', id: 1 },
     { title: 'Galerias', id: 2 },
-    { title: 'Locales', id: 3 }
+    { title: 'Locales', id: 3 },
+    { title: 'Ofertas', id: 4 },
+    { title: 'Empleados', id: 5 }
   ];
 })
 
@@ -160,4 +162,67 @@ angular.module('starter.controllers', [])
       })
     });
   });
-});
+})
+
+.controller('OfertaCtrl', function($scope, $stateParams, API) {
+  API.get('ofertas/detail/' + $stateParams.ofertaId + '/').then(function(response) {
+    $scope.oferta = response.data.data;
+    console.log($scope.oferta)
+  });
+})
+
+.controller('OfertasCtrl', function($scope, $stateParams, API) {
+  $scope.ofertas = [];
+
+  API.get('ofertas/').then(function(response) {
+    $scope.ofertas = [];
+    console.log(response.data.data);
+    angular.forEach(response.data.data, function(value, key){
+      $scope.ofertas.push({
+        imagen: value.attributes.imagen, 
+        servicio: value.attributes.servicio,
+        nombre: value.attributes.nombre,
+        descripcion: value.attributes.descripcion,
+        estatus: value.attributes.estatus,
+        fecha_vencimiento: value.attributes.fecha_vencimiento,
+        descuento: value.attributes.descuento
+      })
+    });
+  });
+})
+
+.controller('EmpleadoCtrl', function($scope, $stateParams, API) {
+  API.get('empleados/detail/' + $stateParams.empleadoId + '/').then(function(response) {
+    $scope.empleado = response.data.data;
+    console.log($scope.empleado)
+  });
+})
+
+.controller('EmpleadosCtrl', function($scope, $stateParams, API) {
+  $scope.empleados = [];
+
+  API.get('empleados/').then(function(response) {
+    $scope.empleados = [];
+    console.log(response.data.data);
+    angular.forEach(response.data.data, function(value, key){
+      $scope.empleados.push({
+        imagen: value.attributes.imagen, 
+        estatus: value.attributes.estatus,
+        nombre: value.attributes.nombre,
+        rol: value.attributes.rol,
+        local: value.attributes.local,
+        receso: value.attributes.receso,
+        direccion_email: value.attributes.direccion_email,
+        primer_nombre: value.attributes.primer_nombre,
+        segundo_nombre: value.attributes.segundo_nombre,
+        apellido_paterno: value.attributes.apellido_paterno
+      })
+    });
+  });
+})
+
+
+
+
+
+;

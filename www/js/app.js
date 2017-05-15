@@ -120,6 +120,48 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
     }
   })
 
+  .state('app.ofertas', {
+    url: '/ofertas',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/ofertas.html',
+        controller: 'OfertasCtrl'
+      }
+    }
+  })
+
+  .state('app.oferta', {
+    cache: false,
+    url: '/oferta/:ofertaId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/oferta.html',
+        controller: 'OfertaCtrl'
+      }
+    }
+  })
+
+  .state('app.empleados', {
+    url: '/empleados',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/empleados.html',
+        controller: 'EmpleadosCtrl'
+      }
+    }
+  })
+
+  .state('app.empleado', {
+    cache: false,
+    url: '/empleado/:empleadoId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/empleado.html',
+        controller: 'EmpleadoCtrl'
+      }
+    }
+  })
+
     .state('app.playlists', {
       url: '/playlists',
       views: {

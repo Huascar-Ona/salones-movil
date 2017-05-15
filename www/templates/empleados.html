@@ -1,0 +1,20 @@
+<ion-view view-title="Estilistas">
+  <ion-content>
+    <ion-list ng-repeat="empleado in empleados | orderBy:'id'">
+    	<div class="row">
+    		<div class="col col-80">
+	            <span class="">{{ empleado.primer_nombre }} </span> 
+	            <span class="">{{ empleado.segundo_nombre }} </span>
+	            <span class="">{{ empleado.apellido_paterno }}</span> </br>
+	            <span class="">{{ empleado.rol }}</span> </br>
+	            <span class="down-color">Encuéntrame en </span> 
+	            <span class="">{{ empleado.local }}</span> </br> 
+	            <span class="down-color">Escríbeme al </span> 
+	            <span class="">{{ empleado.direccion_email }}</span> </br> 
+	        </div>
+	        <div class="col col-20">
+	            <img ng-src="{{empleado.imagen}}" class="img-responsive"/>
+	        </div>
+	    </div>
+  </ion-content>
+</ion-view>
