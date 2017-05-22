@@ -10,7 +10,6 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
 .run(function($ionicPlatform, $http, $rootScope) {
 
   $ionicPlatform.ready(function() {
-    $rootScope.$broadcast('restorestate'); 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -25,10 +24,10 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
   });
 
   delete $http.defaults.headers['get']["If-Modified-Since"]
-  delete $http.defaults.headers['post']["If-Modified-Since"]
+  delete $http.defaults.headers['post']["If-Modified-Since"]  
 
   $http.defaults.headers.post['Content-Type'] = 'application/vnd.api+json';
-  $http.defaults.headers.common.Authorization = 'Token 8faca8709720bda7de2edce7e8553d6355132204';
+  $http.defaults.headers.common.Authorization = 'Token ce2926a46094e8ae35269929413842b33c63dc46';
 })
 
 .config(function(
@@ -122,6 +121,17 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
       'menuContent': {
         templateUrl: 'templates/local.html',
         controller: 'LocalCtrl'
+      }
+    }
+  })
+
+  .state('app.reservas', {
+    cache: false,
+    url: '/reservas',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/reservas.html',
+        controller: 'ReservasCtrl'
       }
     }
   })

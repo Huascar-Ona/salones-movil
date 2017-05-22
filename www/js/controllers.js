@@ -2,6 +2,8 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, API, userService, $rootScope) {
 
+  $rootScope.$broadcast('restorestate'); 
+
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -42,7 +44,7 @@ angular.module('starter.controllers', [])
       
       userService.model.token = response.data.token;
       userService.model.username = $scope.loginData.username;
-      
+
       $ionicPopup.alert({
          title: "Bienvenido " + $scope.loginData.username + ".",
          template: ''
@@ -133,7 +135,7 @@ angular.module('starter.controllers', [])
       }
 
       $scope.validated = true;
-      API.post('reservas/create/', '', resevaAttr).then(function successCallback(response) {
+      API.post('reservas/create/', '', resevaAttr, true).then(function successCallback(response) {
         $ionicPopup.confirm({
            title: "Reservacion creada exitosamente.",
         });
@@ -193,4 +195,24 @@ angular.module('starter.controllers', [])
       })
     });
   });
+
+})
+
+.controller('ReservasCtrl', function($scope, $stateParams, API) {
+
+  API.get('reservas/user/', '', true).then(function(response) {
+    $scope.reservas = [];
+
+    angular.forEach(response.data.data, function(value, key){
+      $scope.reservas.push({
+        fecha: value.attributes.fecha,
+        direccion_local: value.attributes.local.direccion,
+        nombre_local: value.attributes.local.nombre,
+        empleado: value.attributes.empleado,
+        servicio: value.attributes.servicio
+      })
+    });
+
+  });
+
 });

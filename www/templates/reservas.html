@@ -1,0 +1,14 @@
+<ion-view view-title="Reservas">
+  <ion-content>
+    <ion-list ng-repeat="reserva in reservas | orderBy:'fecha'">
+    	<div class="row">
+    		<div class="col">
+	            <span class="">{{ reserva.fecha }}</span><br />
+	            <span class="">{{ reserva.direccion_local }}</span><br />
+	            <span class="">{{ reserva.nombre_local }}</span><br />
+	            <span class="">{{ reserva.empleado }}</span><br />
+	            <span class="">{{ reserva.servicio }}</span><br />
+	        </div>
+	    </div>
+  </ion-content>
+</ion-view>

@@ -26,7 +26,6 @@ angular.module('starter.services', [])
         },
 
         SaveState: function () {
-            // probablemente vamos a tener que usar algo que no sea local storage
             localStorageService.set('userModel', angular.toJson(service.model));
         },
 
@@ -46,7 +45,22 @@ angular.module('starter.services', [])
 })
 
 .service('API', function($http, APIConfig, AppModeService, Modes, userService) {
-  userService.RestoreState();
+
+  function getHeaders(useUserToken, isPost) {
+    headers = {};
+
+    if(isPost) {      
+       headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    }
+
+    if(useUserToken) {
+      if(userService.model.token !== null) {
+        headers['Authorization'] = 'Token ' + userService.model.token;
+      }
+    }
+
+    return headers;
+  }
 
   function url(resource, params) {
     var url;
@@ -63,19 +77,30 @@ angular.module('starter.services', [])
     return url;
   }
 
-  function get(resource, params) {
+  function get(resource, params, useUserToken) {
+
+    if(typeof useUserToken === 'undefined') {
+      useUserToken = false;
+    }
+
     return $http({
       method: 'GET',
       url:    url(resource, params),
+      headers: getHeaders(useUserToken, false),
       params: params
     });
   }
 
-  function post(resource, params, data) {
+  function post(resource, params, data, useUserToken) {
+
+    if(typeof useUserToken === 'undefined') {
+      useUserToken = false;
+    }
+
     return $http({
         method: 'POST',
         url: url(resource, params),
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        headers: getHeaders(useUserToken, true),
         transformRequest: function(obj) {
             var str = [];
             for(var p in obj)
