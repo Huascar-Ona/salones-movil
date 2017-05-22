@@ -10,7 +10,6 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
 .run(function($ionicPlatform, $http, $rootScope) {
 
   $ionicPlatform.ready(function() {
-    console.log('dooing ionic run');
     $rootScope.$broadcast('restorestate'); 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

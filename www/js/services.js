@@ -31,8 +31,10 @@ angular.module('starter.services', [])
         },
 
         RestoreState: function () {
-            console.log('test');
-            service.model = localStorageService.get('userModel');
+            var userModel = localStorageService.get('userModel');
+            if(userModel !== null) {
+              service.model = angular.fromJson(userModel);
+            }
             console.log(service.model)
         }
     }
@@ -45,7 +47,7 @@ angular.module('starter.services', [])
 
 .service('API', function($http, APIConfig, AppModeService, Modes, userService) {
   userService.RestoreState();
-  
+
   function url(resource, params) {
     var url;
     if(AppModeService.MODE === Modes.DEV_MODE) {
