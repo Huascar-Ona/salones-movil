@@ -7,8 +7,11 @@
 angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
               'starter.controllers', 'starter.services', 'ion-gallery'])
 
-.run(function($ionicPlatform, $http) {
+.run(function($ionicPlatform, $http, $rootScope) {
+
   $ionicPlatform.ready(function() {
+    console.log('dooing ionic run');
+    $rootScope.$broadcast('restorestate'); 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -31,7 +34,11 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
 
 .config(function(
   $stateProvider, $authProvider, $urlRouterProvider,
-  APIConfig, localStorageServiceProvider) {
+  APIConfig, localStorageServiceProvider, localStorageServiceProvider) {
+
+  localStorageServiceProvider
+    .setPrefix('starter')
+    .setStorageType('sessionStorage');
 
   $authProvider.configure({
     apiUrl: APIConfig.PREFIX
@@ -120,15 +127,15 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
     }
   })
 
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
+  .state('app.playlists', {
+    url: '/playlists',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/playlists.html',
+        controller: 'PlaylistsCtrl'
       }
-    })
+    }
+  })
 
   .state('app.single', {
     url: '/playlists/:playlistId',

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, API, userService, $rootScope) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -8,6 +8,9 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+
+  // determina si mostramos o no el login en el menu
+  $scope.showLogin = true;
 
   // Form data for the login modal
   $scope.loginData = {};
@@ -31,13 +34,36 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+    API.post('api-token-auth/', '', {
+      username: $scope.loginData.username,
+      password: $scope.loginData.password
+    }).then(function successCallback(response) {
+      
+      userService.model.token = response.data.token;
+      userService.model.username = $scope.loginData.username;
+      
+      $ionicPopup.alert({
+         title: "Bienvenido " + $scope.loginData.username + ".",
+         template: ''
+      }).then(function(res) {
+        $scope.closeLogin();
+      });
+
+      $scope.showLogin = false;
+      $rootScope.$broadcast('savestate');
+
+    }, function errorCallback(response) {      
+
+      $ionicPopup.alert({
+         title: 'No se pudo iniciar sesión con el usuario y contraseña proporcionados.',
+         template: ''
+      }).then(function(res) {
+          $scope.closeLogin();
+      });
+      
+    });
+
   };
 })
 

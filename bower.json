@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "ng-token-auth": "^0.0.29",
-    "angular-local-storage": "^0.5.2",
+    "angular-local-storage": "^0.6.0",
     "ion-gallery": "^0.1.14"
   }
 }
