@@ -129,3 +129,7 @@
 .default-title {
   color: white;
 }
+
+.space {
+  white-space: pre-wrap;
+}

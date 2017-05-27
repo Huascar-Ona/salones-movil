@@ -158,7 +158,8 @@ angular.module('starter.controllers', [])
         imagen: value.attributes.imagen, 
         direccion: value.attributes.direccion,
         nombre: value.attributes.nombre,
-        telefono: value.attributes.telefono
+        telefono: value.attributes.telefono,
+        horario: value.attributes.horario
       })
     });
   });

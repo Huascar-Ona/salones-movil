@@ -1,16 +1,29 @@
 <ion-view view-title="Locales">
   <ion-content>
     <ion-list ng-repeat="local in locales | orderBy:'id'">
+
     	<div class="row">
     		<div class="col col-80">
 	            <span class="">{{ local.nombre }}</span> </br>
 	            <span class="">{{ local.direccion }}</span> </br>
 	            <span class="down-color">Llámanos al </span> 
 	            <span class="">{{ local.telefono }}</span> </br> 
+              <span class="ion-chevron-down down-color pull-right" ng-click="showme=true" ng-hide="showme"></span>
+              <span class="ion-chevron-up down-color pull-right" ng-click="showme=false" ng-show="showme"></span>
 	        </div>
 	        <div class="col col-20">
 	            <img ng-src="{{local.imagen}}" class="img-responsive"/>
 	        </div>
 	    </div>
+
+      <a class="row item-detail" ng-show="showme" href="#/app/locales/{{local.id}}">
+          <div class="col-50 item-info">
+            <span class="">Horario: </span> </br> 
+            <span class="space" >{{ local.horario }}</span>
+          </div>
+      </a>
+
+	    
+
   </ion-content>
 </ion-view>

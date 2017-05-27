@@ -4,8 +4,10 @@
     	<div class="row">
     		<div class="col col-80">
 	            <span class="">{{ oferta.nombre }}</span> </br>
+	            <span class="down-color">Para el servicio: </span> 
 	            <span class="">{{ oferta.servicio }}</span> </br>
-	       		<span class="">{{ oferta.estatus }}</span> </br>
+  				<b ng-if="oferta.estatus == true">Disponible</b> 
+  				<b ng-if="oferta.estatus == false"> No Disponible</b> </br>
 	            <span class="down-color">Vence el </span> 
 	            <span class="">{{ oferta.fecha_vencimiento }}</span> </br> 
 	        </div>
