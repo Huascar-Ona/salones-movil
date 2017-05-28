@@ -216,7 +216,8 @@ angular.module('starter.controllers', [])
         direccion_email: value.attributes.direccion_email,
         primer_nombre: value.attributes.primer_nombre,
         segundo_nombre: value.attributes.segundo_nombre,
-        apellido_paterno: value.attributes.apellido_paterno
+        apellido_paterno: value.attributes.apellido_paterno,
+        horario: value.attributes.horario
       })
     });
   });

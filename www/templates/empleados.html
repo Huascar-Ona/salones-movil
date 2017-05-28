@@ -6,15 +6,33 @@
 	            <span class="">{{ empleado.primer_nombre }} </span> 
 	            <span class="">{{ empleado.segundo_nombre }} </span>
 	            <span class="">{{ empleado.apellido_paterno }}</span> </br>
-	            <span class="">{{ empleado.rol }}</span> </br>
+	            <b ng-if="empleado.rol == 2">Estilista</b>
+	            <b ng-if="empleado.rol == 3">Maquillador</b>
+	            <b ng-if="empleado.rol == 4">Manicurista</b>
+	            <b ng-if="empleado.rol == 5">Masajista</b>
+	            <b ng-if="empleado.rol == 6">Administración</b>
+	            <b ng-if="empleado.rol == 7">Asistente</b>
+	            <b ng-if="empleado.rol == 8">Servicio</b>
+	            <b ng-if="empleado.rol == 9">Recepcionista</b>
+	            <b ng-if="empleado.rol == 10">Repartidor</b>
+  				<b ng-if="empleado.rol == 11">Asociado</b> </br>
 	            <span class="down-color">Encuéntrame en </span> 
 	            <span class="">{{ empleado.local }}</span> </br> 
 	            <span class="down-color">Escríbeme al </span> 
 	            <span class="">{{ empleado.direccion_email }}</span> </br> 
+	            <span class="ion-chevron-down down-color pull-right" ng-click="showme=true" ng-hide="showme"></span>
+              	<span class="ion-chevron-up down-color pull-right" ng-click="showme=false" ng-show="showme"></span>
 	        </div>
 	        <div class="col col-20">
 	            <img ng-src="{{empleado.imagen}}" class="img-responsive"/>
 	        </div>
 	    </div>
+
+	    <a class="row item-detail" ng-show="showme" href="#/app/empleados/{{empleado.id}}">
+          <div class="col-50 item-info">
+            <span class="">Horario: </span> </br> 
+            <b class="space" >{{ empleado.horario }}</b>
+          </div>
+      	</a>
   </ion-content>
 </ion-view>
