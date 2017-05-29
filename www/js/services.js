@@ -2,7 +2,7 @@ angular.module('starter.services', [])
 
 .constant('APIConfig', {
   PREFIX: 'http://' + 'salones.pe:8069' + '/api/',
-  DEV_PREFIX: 'http://' + 'localhost:8000' + '/api/',
+  DEV_PREFIX: 'http://' + 'salones.pe:8069' + '/api/',
 })
 
 .constant('Modes', {
@@ -49,7 +49,7 @@ angular.module('starter.services', [])
   function getHeaders(useUserToken, isPost) {
     headers = {};
 
-    if(isPost) {      
+    if(isPost) {
        headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
 
@@ -69,7 +69,7 @@ angular.module('starter.services', [])
     } else if (AppModeService.MODE === Modes.PROD_MODE) {
        url = APIConfig.PREFIX + resource;
     }
-    
+
     if (params && params.id) {
       url += '/' + params.id;
     }

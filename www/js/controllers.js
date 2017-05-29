@@ -1,8 +1,51 @@
 angular.module('starter.controllers', [])
 
+.controller('LoginCtrl', function($scope, API, $location, $ionicPopup, $auth) {
+  // Form data for the login modal
+  $scope.loginData = {};
+
+  // Perform the login action when the user submits the login form
+  $scope.doLogin = function() {
+    var redirect = function(response) {
+      $location.path('/app/galerias');
+    };
+
+    $auth.validateUser().then(redirect);
+
+    API.post('api-token-auth/', '', {
+      username: $scope.loginData.username,
+      password: $scope.loginData.password
+    }).then(function successCallback(response) {
+      $auth.submitLogin($scope.loginData).then(redirect, function() {
+        alert('Datos incorrectos');
+      });
+      
+      userService.model.token = response.data.token;
+      userService.model.username = $scope.loginData.username;
+
+      $location.path('/app/galerias');
+      $ionicPopup.alert({
+         title: "Bienvenido " + $scope.loginData.username + ".",
+         template: ''
+      });
+
+      $scope.showLogin = false;
+      $rootScope.$broadcast('savestate');
+
+    }, function errorCallback(response) {
+      $ionicPopup.alert({
+         title: 'No se pudo iniciar sesión con el usuario y contraseña proporcionados.',
+         template: ''
+      });
+
+    });
+
+  };
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, API, userService, $rootScope) {
 
-  $rootScope.$broadcast('restorestate'); 
+  $rootScope.$broadcast('restorestate');
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -13,9 +56,6 @@ angular.module('starter.controllers', [])
 
   // determina si mostramos o no el login en el menu
   $scope.showLogin = true;
-
-  // Form data for the login modal
-  $scope.loginData = {};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -33,40 +73,6 @@ angular.module('starter.controllers', [])
   $scope.login = function() {
     $scope.modal.show();
   };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-
-    API.post('api-token-auth/', '', {
-      username: $scope.loginData.username,
-      password: $scope.loginData.password
-    }).then(function successCallback(response) {
-      
-      userService.model.token = response.data.token;
-      userService.model.username = $scope.loginData.username;
-
-      $ionicPopup.alert({
-         title: "Bienvenido " + $scope.loginData.username + ".",
-         template: ''
-      }).then(function(res) {
-        $scope.closeLogin();
-      });
-
-      $scope.showLogin = false;
-      $rootScope.$broadcast('savestate');
-
-    }, function errorCallback(response) {      
-
-      $ionicPopup.alert({
-         title: 'No se pudo iniciar sesión con el usuario y contraseña proporcionados.',
-         template: ''
-      }).then(function(res) {
-          $scope.closeLogin();
-      });
-      
-    });
-
-  };
 })
 
 .controller('PlaylistsCtrl', function($scope) {
@@ -80,7 +86,16 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('GaleriasCtrl', function($scope, API) {
+.controller('GaleriasCtrl', function($scope, API, $ionicLoading) {
+  /******* Loading spinner *******/
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.show($ionicLoading);
+
   $scope.galerias = [];
 
   API.get('galerias/').then(function(response) {
@@ -88,17 +103,28 @@ angular.module('starter.controllers', [])
     angular.forEach(response.data.data, function(value, key){
       $scope.galerias.push({src: value.attributes.imagen, sub: value.attributes.descripcion})
     });
+  }).finally(function() {
+    $ionicLoading.hide();
   });
 })
 
-.controller('ServicioCtrl', function($scope, $stateParams, API, $ionicPopup, CurrencyService) {
+.controller('ServicioCtrl', function($scope, $stateParams, API, $ionicPopup, CurrencyService, $ionicLoading) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
 
+  $scope.show($ionicLoading);
   $scope.reserva = {};
 
   API.get('empleados/').then(function(response) {
     $scope.empleados = response.data.data;
     console.log($scope.empleados)
+  }).finally(function() {
+    $ionicLoading.hide();
   });
+
   API.get('locales/').then(function(response) {
     $scope.locales = response.data.data;
     console.log($scope.locales)
@@ -148,39 +174,85 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ServiciosCtrl', function($scope, API, CurrencyService) {
+.controller('ServiciosCtrl', function($scope, API, CurrencyService, $ionicLoading) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.show($ionicLoading);
   $scope.reserva = {};
+
   $scope.currencySymbol = CurrencyService.currency_symbol;
   API.get('servicios/categorias/').then(function(response) {
     $scope.serviciosCategorias = response.data.data;
     console.log($scope.serviciosCategorias[0])
+  }).finally(function() {
+    $ionicLoading.hide();
   });
 })
 
-.controller('ProductoCtrl', function($scope, $stateParams, API, CurrencyService) {
+.controller('ProductoCtrl', function($scope, $stateParams, API, CurrencyService, $ionicLoading) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.show($ionicLoading);
   $scope.currencySymbol = CurrencyService.currency_symbol;
+
   API.get('productos/detail/' + $stateParams.productoId + '/').then(function(response) {
     $scope.producto = response.data.data;
     console.log($scope.producto)
+  }).finally(function() {
+    $ionicLoading.hide();
   });
 })
 
-.controller('ProductosCtrl', function($scope, $stateParams, API, CurrencyService) {
+.controller('ProductosCtrl', function($scope, $stateParams, API, CurrencyService, $ionicLoading) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.show($ionicLoading);
   $scope.currencySymbol = CurrencyService.currency_symbol;
+
   API.get('productos/categorias/').then(function(response) {
     $scope.productosCategorias = response.data.data;
     console.log(response.data.data[0])
+  }).finally(function() {
+    $ionicLoading.hide();
   });
 })
 
-.controller('LocalCtrl', function($scope, $stateParams, API) {
+.controller('LocalCtrl', function($scope, $stateParams, API, $ionicLoading) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.show($ionicLoading);
   API.get('locales/detail/' + $stateParams.localId + '/').then(function(response) {
     $scope.local = response.data.data;
     console.log($scope.local)
+  }).finally(function() {
+    $ionicLoading.hide();
   });
 })
 
-.controller('LocalesCtrl', function($scope, $stateParams, API) {
+.controller('LocalesCtrl', function($scope, $stateParams, API, $ionicLoading) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.show($ionicLoading);
   $scope.locales = [];
 
   API.get('locales/').then(function(response) {
@@ -188,17 +260,26 @@ angular.module('starter.controllers', [])
     console.log(response.data.data);
     angular.forEach(response.data.data, function(value, key){
       $scope.locales.push({
-        imagen: value.attributes.imagen, 
+        imagen: value.attributes.imagen,
         direccion: value.attributes.direccion,
         nombre: value.attributes.nombre,
         telefono: value.attributes.telefono
       })
     });
+  }).finally(function() {
+    $ionicLoading.hide();
   });
 
 })
 
-.controller('ReservasCtrl', function($scope, $stateParams, API) {
+.controller('ReservasCtrl', function($scope, $stateParams, API, $ionicLoading) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.show($ionicLoading);
 
   API.get('reservas/user/', '', true).then(function(response) {
     $scope.reservas = [];
@@ -213,6 +294,8 @@ angular.module('starter.controllers', [])
       })
     });
 
+  }).finally(function() {
+    $ionicLoading.hide();
   });
 
 });
