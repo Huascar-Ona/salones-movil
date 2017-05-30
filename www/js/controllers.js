@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, API, userService, $rootScope) {
 
-  $rootScope.$broadcast('restorestate'); 
+  $rootScope.$broadcast('restorestate');
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -34,14 +34,37 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+
+})
+
+.controller('LoginCtrl', function($scope, $auth, $location, $ionicPopup, API, userService, $rootScope, $ionicModal) {
   // Perform the login action when the user submits the login form
+
+  $rootScope.$broadcast('restorestate');
+
+  // determina si mostramos o no el login en el menu
+  $scope.showLogin = true;
+
+  // Form data for the login modal
+  $scope.loginData = {};
+
+  // Triggered in the login modal to close it
+  $scope.closeLogin = function() {
+    $scope.modal.hide();
+  };
+
+  // Open the login modal
+  $scope.login = function() {
+    $scope.modal.show();
+  };
+
   $scope.doLogin = function() {
 
     API.post('api-token-auth/', '', {
       username: $scope.loginData.username,
       password: $scope.loginData.password
     }).then(function successCallback(response) {
-      
+
       userService.model.token = response.data.token;
       userService.model.username = $scope.loginData.username;
 
@@ -49,25 +72,26 @@ angular.module('starter.controllers', [])
          title: "Bienvenido " + $scope.loginData.username + ".",
          template: ''
       }).then(function(res) {
-        $scope.closeLogin();
+        $location.path('/app/galerias');
       });
 
       $scope.showLogin = false;
       $rootScope.$broadcast('savestate');
 
-    }, function errorCallback(response) {      
+    }, function errorCallback(response) {
 
       $ionicPopup.alert({
          title: 'No se pudo iniciar sesión con el usuario y contraseña proporcionados.',
          template: ''
       }).then(function(res) {
-          $scope.closeLogin();
+          $location.path('/app/galerias');
       });
-      
+
     });
 
   };
 })
+
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
@@ -91,7 +115,7 @@ angular.module('starter.controllers', [])
   });
 })
 
-.controller('ServicioCtrl', function($scope, $stateParams, API, $ionicPopup, CurrencyService) {
+.controller('ServicioCtrl', function($scope, $stateParams, API, $ionicPopup, CurrencyService, $rootScope, $location) {
 
   $scope.reserva = {};
 
@@ -118,6 +142,7 @@ angular.module('starter.controllers', [])
 
     $scope.crearReserva = function(local, empleado) {
 
+
       var date2 = new Date($scope.reserva.fecha);
       var date3 = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate()
       var date = new Date($scope.reserva.hora);
@@ -142,6 +167,13 @@ angular.module('starter.controllers', [])
       }, function errorCallback(response) {
         $ionicPopup.confirm({
            title: response.data.errors[0].detail,
+           buttons: [{
+              text: 'Login',
+              onTap: function(e) {
+                $location.path('/login');
+              }
+            }]
+
         });
       });
     };
@@ -188,7 +220,7 @@ angular.module('starter.controllers', [])
     console.log(response.data.data);
     angular.forEach(response.data.data, function(value, key){
       $scope.locales.push({
-        imagen: value.attributes.imagen, 
+        imagen: value.attributes.imagen,
         direccion: value.attributes.direccion,
         nombre: value.attributes.nombre,
         telefono: value.attributes.telefono

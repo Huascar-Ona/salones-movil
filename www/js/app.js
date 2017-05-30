@@ -24,10 +24,10 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
   });
 
   delete $http.defaults.headers['get']["If-Modified-Since"]
-  delete $http.defaults.headers['post']["If-Modified-Since"]  
+  delete $http.defaults.headers['post']["If-Modified-Since"]
 
   $http.defaults.headers.post['Content-Type'] = 'application/vnd.api+json';
-  $http.defaults.headers.common.Authorization = 'Token ce2926a46094e8ae35269929413842b33c63dc46';
+  $http.defaults.headers.common.Authorization = 'Token 6d61047f78b22b55fe5cb177b17b739b1f00446d';
 })
 
 .config(function(
@@ -44,7 +44,13 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
 
   $stateProvider
 
-    .state('app', {
+  .state('login', {
+    url: '/',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -156,5 +162,5 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/galerias');
+  $urlRouterProvider.otherwise('/');
 });
