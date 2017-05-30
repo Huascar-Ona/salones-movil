@@ -104,7 +104,18 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('GaleriasCtrl', function($scope, API) {
+.controller('GaleriasCtrl', function($scope, API, $ionicLoading) {
+
+  /******* Loading spinner *******/
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.show($ionicLoading);
+
+
   $scope.galerias = [];
 
   API.get('galerias/').then(function(response) {
@@ -112,6 +123,8 @@ angular.module('starter.controllers', [])
     angular.forEach(response.data.data, function(value, key){
       $scope.galerias.push({src: value.attributes.imagen, sub: value.attributes.descripcion})
     });
+  }).finally(function() {
+     $ionicLoading.hide();
   });
 })
 
@@ -190,6 +203,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProductoCtrl', function($scope, $stateParams, API, CurrencyService) {
+
   $scope.currencySymbol = CurrencyService.currency_symbol;
   API.get('productos/detail/' + $stateParams.productoId + '/').then(function(response) {
     $scope.producto = response.data.data;
