@@ -1,48 +1,5 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, API, $location, $ionicPopup, $auth) {
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    var redirect = function(response) {
-      $location.path('/app/galerias');
-    };
-
-    $auth.validateUser().then(redirect);
-
-    API.post('api-token-auth/', '', {
-      username: $scope.loginData.username,
-      password: $scope.loginData.password
-    }).then(function successCallback(response) {
-      $auth.submitLogin($scope.loginData).then(redirect, function() {
-        alert('Datos incorrectos');
-      });
-      
-      userService.model.token = response.data.token;
-      userService.model.username = $scope.loginData.username;
-
-      $location.path('/app/galerias');
-      $ionicPopup.alert({
-         title: "Bienvenido " + $scope.loginData.username + ".",
-         template: ''
-      });
-
-      $scope.showLogin = false;
-      $rootScope.$broadcast('savestate');
-
-    }, function errorCallback(response) {
-      $ionicPopup.alert({
-         title: 'No se pudo iniciar sesión con el usuario y contraseña proporcionados.',
-         template: ''
-      });
-
-    });
-
-  };
-})
-
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, API, userService, $rootScope) {
 
   $rootScope.$broadcast('restorestate');
@@ -56,6 +13,9 @@ angular.module('starter.controllers', [])
 
   // determina si mostramos o no el login en el menu
   $scope.showLogin = true;
+
+  // Form data for the login modal
+  $scope.loginData = {};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -72,6 +32,40 @@ angular.module('starter.controllers', [])
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
+  };
+
+  // Perform the login action when the user submits the login form
+  $scope.doLogin = function() {
+
+    API.post('api-token-auth/', '', {
+      username: $scope.loginData.username,
+      password: $scope.loginData.password
+    }).then(function successCallback(response) {
+
+      userService.model.token = response.data.token;
+      userService.model.username = $scope.loginData.username;
+
+      $ionicPopup.alert({
+         title: "Bienvenido " + $scope.loginData.username + ".",
+         template: ''
+      }).then(function(res) {
+        $scope.closeLogin();
+      });
+
+      $scope.showLogin = false;
+      $rootScope.$broadcast('savestate');
+
+    }, function errorCallback(response) {
+
+      $ionicPopup.alert({
+         title: 'No se pudo iniciar sesión con el usuario y contraseña proporcionados.',
+         template: ''
+      }).then(function(res) {
+          $scope.closeLogin();
+      });
+
+    });
+
   };
 })
 

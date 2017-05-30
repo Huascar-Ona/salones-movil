@@ -44,13 +44,7 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
 
   $stateProvider
 
-  .state('login', {
-    url: '/',
-    templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
-  })
-
-  .state('app', {
+    .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -125,7 +119,7 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
     url: '/locales/:localId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/local.html',
+        templateUrl: 'templates/locales.html',
         controller: 'LocalCtrl'
       }
     }
@@ -162,5 +156,5 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/app/galerias');
 });
