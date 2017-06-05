@@ -181,3 +181,7 @@
 .col-md-6 p { 
   padding: 0 45px;
 }
+
+.center-alignment{
+    text-align: center;
+}

@@ -1,2 +1,23 @@
-<ion-view view-title="Local">
+<ion-view view-title="{{local.attributes.nombre}} ">
+	<ion-content>
+    <div class="row item-box">
+      <div class="col-50">
+        <span class="bold">{{local.attributes.direccion}}</span>
+      </div>
+      <div class="col-50">
+        <span class="pull-right bold">{{local.attributes.telefono}}</span>
+      </div>
+    </div>
+
+    <div class="row item-box-2">
+      <div class="row">
+        <img ng-src="{{local.attributes.imagen}}" class="img-responsive"/>
+      </div>
+    </div>
+
+    <button class="button button-balanced full-width">
+      OBTENER
+    </button>
+
+  </ion-content>
 </ion-view>

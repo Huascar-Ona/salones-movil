@@ -1,2 +1,23 @@
-<ion-view view-title="Empleado">
+<ion-view view-title="{{empleado.attributes.primer_nombre}} ">
+	<ion-content>
+    <div class="row item-box">
+      <div class="col-50">
+        <span class="bold">{{empleado.attributes.puntuacion_promedio}}</span>
+      </div>
+      <div class="col-50">
+        <span class="pull-right bold">{{empleado.attributes.local}}</span>
+      </div>
+    </div>
+
+    <div class="row item-box-2">
+      <div class="row">
+        <img ng-src="{{empleado.attributes.imagen}}" class="img-responsive"/>
+      </div>
+    </div>
+
+    <button class="button button-balanced full-width">
+      RESERVAR
+    </button>
+
+  </ion-content>
 </ion-view>

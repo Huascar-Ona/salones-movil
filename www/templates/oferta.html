@@ -1,2 +1,23 @@
-<ion-view view-title="Oferta">
+<ion-view view-title="{{oferta.attributes.nombre}} ">
+	<ion-content>
+    <div class="row item-box">
+      <div class="col-50">
+        <span class="bold">{{oferta.attributes.precio}}</span>
+      </div>
+      <div class="col-50">
+        <span class="pull-right bold">{{oferta.attributes.porcentaje}}</span>
+      </div>
+    </div>
+
+    <div class="row item-box-2">
+      <div class="row">
+        <img ng-src="{{oferta.attributes.imagen}}" class="img-responsive"/>
+      </div>
+    </div>
+
+    <button class="button button-balanced full-width">
+      OBTENER
+    </button>
+
+  </ion-content>
 </ion-view>

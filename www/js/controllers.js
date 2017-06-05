@@ -240,7 +240,8 @@ angular.module('starter.controllers', [])
         direccion: value.attributes.direccion,
         nombre: value.attributes.nombre,
         telefono: value.attributes.telefono,
-        horario: value.attributes.horario
+        horario: value.attributes.horario,
+        id: value.id
       })
     });
   });
@@ -287,13 +288,15 @@ angular.module('starter.controllers', [])
         descripcion: value.attributes.descripcion,
         estatus: value.attributes.estatus,
         fecha_vencimiento: value.attributes.fecha_vencimiento,
-        descuento: value.attributes.descuento
+        descuento: value.attributes.descuento,
+        id: value.id
       })
     });
   });
 })
 
 .controller('EmpleadoCtrl', function($scope, $stateParams, API) {
+  console.log($stateParams.empleadoId)
   API.get('empleados/detail/' + $stateParams.empleadoId + '/').then(function(response) {
     $scope.empleado = response.data.data;
     console.log($scope.empleado)
@@ -318,7 +321,8 @@ angular.module('starter.controllers', [])
         primer_nombre: value.attributes.primer_nombre,
         segundo_nombre: value.attributes.segundo_nombre,
         apellido_paterno: value.attributes.apellido_paterno,
-        horario: value.attributes.horario
+        horario: value.attributes.horario,
+        id: value.id
       })
     });
   });

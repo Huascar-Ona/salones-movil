@@ -154,7 +154,7 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
 
   .state('app.oferta', {
     cache: false,
-    url: '/oferta/:ofertaId',
+    url: '/ofertas/:ofertaId',
     views: {
       'menuContent': {
         templateUrl: 'templates/oferta.html',
@@ -175,7 +175,7 @@ angular.module('starter', ['ionic', 'ng-token-auth', 'LocalStorageModule',
 
   .state('app.empleado', {
     cache: false,
-    url: '/empleado/:empleadoId',
+    url: '/empleados/:empleadoId',
     views: {
       'menuContent': {
         templateUrl: 'templates/empleado.html',

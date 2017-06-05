@@ -1,19 +1,14 @@
 <ion-view view-title="ofertas">
   <ion-content>
     <ion-list ng-repeat="oferta in ofertas | orderBy:'id'">
-    	<div class="row">
-    		<div class="col col-80">
+    		<ion-item class="col col-80" href="#/app/ofertas/{{oferta.id}}">
+    			<div class="col col-20">
+	            	<img ng-src="{{oferta.imagen}}" class="img-responsive"/>
+	        	</div>
 	            <span class="">{{ oferta.nombre }}</span> </br>
-	            <span class="down-color">Para el servicio: </span> 
-	            <span class="">{{ oferta.servicio }}</span> </br>
   				<b ng-if="oferta.estatus == true">Disponible</b> 
-  				<b ng-if="oferta.estatus == false"> No Disponible</b> </br>
-	            <span class="down-color">Vence el </span> 
-	            <span class="">{{ oferta.fecha_vencimiento }}</span> </br> 
-	        </div>
-	        <div class="col col-20">
-	            <img ng-src="{{oferta.imagen}}" class="img-responsive"/>
-	        </div>
-	    </div>
+  				<b ng-if="oferta.estatus == false"> No Disponible</b> </br> 
+	        </ion-item> 
+	</ion-list> 
   </ion-content>
 </ion-view>
