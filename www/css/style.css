@@ -185,3 +185,8 @@
 .center-alignment{
     text-align: center;
 }
+
+.gallery {
+    
+    flex-wrap: wrap;
+}

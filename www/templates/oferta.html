@@ -2,16 +2,21 @@
 	<ion-content>
     <div class="row item-box">
       <div class="col-50">
-        <span class="bold">{{oferta.attributes.precio}}</span>
+        <span class="bold">Vence el {{oferta.attributes.fecha_vencimiento}}</span>
       </div>
       <div class="col-50">
-        <span class="pull-right bold">{{oferta.attributes.porcentaje}}</span>
+        <span class="pull-right bold" ng-if="oferta.attributes.estatus == true">Estatus: Disponible</span>
+        <span class="pull-right bold" ng-if="oferta.attributes.estatus == false">Estatus: No Disponible</span>
       </div>
     </div>
 
     <div class="row item-box-2">
       <div class="row">
         <img ng-src="{{oferta.attributes.imagen}}" class="img-responsive"/>
+        <div class="col-50 item-detail">
+          <span class="pull-left">Descripción:</span> </br>
+          <span class="pull-left bold">{{oferta.attributes.descripcion}}</span>
+        </div>
       </div>
     </div>
 
