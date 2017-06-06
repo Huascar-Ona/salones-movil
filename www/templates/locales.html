@@ -1,14 +1,14 @@
 <ion-view view-title="Locales">
   <ion-content>
-    <ion-list ng-repeat="local in locales | orderBy:'id'" >
-
-    	<div class="row" href="#/app/locales/{{local.id}}">
-    		<div class="col col-80">
-              <div class="col no-bottom-padding some-left-padding">
-  	            <span class="">{{ local.nombre }}</span> </br>
-  	            <span class="">{{ local.direccion }}</span> </br>
-  	            <span class="down-color">Llámanos al </span> 
-  	            <b class="">{{ local.telefono }}</b>
+    <ion-list ng-repeat="local in locales | orderBy:'id'">
+      <a class="row item-detail" href="#/app/locales/{{local.id}}">
+        <div class="row">
+          <div class="col col-80">
+            <div class="col no-bottom-padding some-left-padding">
+                <span class="">{{ local.nombre }}</span> </br>
+                <span class="">{{ local.direccion }}</span> </br>
+                <span class="down-color">Llámanos al </span> 
+                <b class="">{{ local.telefono }}</b>
               </div> 
               <div class="row no-upper no-left-padding">
                 <div class="col col-10 no-left-padding no-right-padding">
@@ -18,11 +18,11 @@
                   <span class="space" >{{ local.horario }}</span>
                 </div>
               </div>
-  	    </div>
-	      <div class="col col-20" >
-	         <img ng-src="{{local.imagen}}" class="img-responsive"/>
-	      </div>
-	    </div>
-    </ion-list>
+            </div>
+            <div class="col col-20">
+                <img ng-src="{{local.imagen}}" class="img-responsive"/>
+            </div>
+        </div>
+    </a>
   </ion-content>
 </ion-view>
