@@ -196,3 +196,12 @@
 .gallery {
     flex-wrap: wrap;
 }
+
+.item.thumb-right img:nth-child(4){
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  max-width: 80px !important;
+  max-height: 80px !important;
+  width: 100%  !important;
+}

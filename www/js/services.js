@@ -12,7 +12,7 @@ angular.module('starter.services', [])
 
 .service('AppModeService', function(Modes) {
   return {
-      MODE: Modes.DEV_MODE,
+      MODE: Modes.PROD_MODE,
   }
 })
 
