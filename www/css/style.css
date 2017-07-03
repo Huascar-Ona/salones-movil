@@ -197,6 +197,12 @@
     flex-wrap: wrap;
 }
 
+.divider{
+    width:3px;
+    height:auto;
+    display:inline-block;
+}
+
 .item.thumb-right img:nth-child(4){
   position: absolute !important;
   top: 10px !important;
@@ -204,4 +210,38 @@
   max-width: 80px !important;
   max-height: 80px !important;
   width: 100%  !important;
+}
+
+.linear-gradient {
+    background: linear-gradient(black, #17bd90); 
+}
+
+.linear-gradient-2 {
+    background: -moz-linear-gradient(left, #17bd90, black);
+    background: -webkit-linear-gradient(left, #17bd90, black);
+    background: linear-gradient(to right, #17bd90, black);  
+}
+
+.linear-gradient-3 {
+    background: -moz-linear-gradient(left, black, #17bd90);
+    background: -webkit-linear-gradient(left, black, #17bd90);
+    background: linear-gradient(to right, black, #17bd90);  
+}
+
+.linear-gradient-4 {
+    background: -moz-linear-gradient(left, white, black);
+    background: -webkit-linear-gradient(left, white, black);
+    background: linear-gradient(to right, white, black);  
+}
+
+.font-impact {
+    font-family: impact;
+}
+
+.font-courier {
+    font-family: courier;
+}
+
+.font-arial {
+    font-family: arial black;
 }
