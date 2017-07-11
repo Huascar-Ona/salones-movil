@@ -1,41 +1,39 @@
 <ion-view view-title="{{local.attributes.nombre}} ">
 	<ion-content>
-    <div class="row item-box linear-gradient-4">
+    <div class="row item-box">
       <div class="col-50">
-        <span class="bold"> </span>
-      </div>
-      <div class="col-50">
-        <span class="pull-right bold font-arial">Dirección: {{local.attributes.direccion}}</span>
+        <span class="bold">Dirección: {{local.attributes.direccion}}</span>
       </div>
     </div>
 
-    <div class="divider"/>
-    </div>
+		<div class="">
+			<img ng-src="https://www.petdarling.com/articulos/wp-content/uploads/2016/06/fotos-de-perritos-tiernos.jpg" class="local-img-responsive"/>
+		</div>
 
     <div class="row item-box-2">
-      <div class="row">
-        <img ng-src="{{local.attributes.imagen}}" class="img-responsive"/>
-      </div>
-      <div class="row item-detail">
-          <div class="col col-10 no-right-padding">
-            <span class="down-color">Horario: </span> </br> 
-          </div> 
-          <div class="col "> 
-            <span class="font-garamond space" >{{ local.attributes.horario }}</span>
-          </div>
+
+      <div class="item-detail">
+        <div class="">
+          <span class="down-color">Horario: </span> </br>
+        </div>
+        <div class="">
+          <span class="" >{{ local.attributes.horario }}</span>
+		    </div>
       </div>
     </div>
 
-    <button class="button button-balanced full-width-2 linear-gradient">
-      ESTILISTAS DEL LOCAL
-    </button>
-
-    <div class="divider"/>
-    </div>
-
-    <button class="button button-balanced full-width-2 linear-gradient-2">
-      RESERVAR
-    </button>
+		<div class="row">
+			<div class="col col-50">
+				<button class="button button-balanced" style="width: 100%;">
+		      ESTILISTAS
+		    </button>
+			</div>
+			<div class="col col-50">
+			  <button class="button button-balanced" style="width: 100%;">
+				   RESERVAR
+			  </button>
+			</div>
+		</div>
 
   </ion-content>
 </ion-view>

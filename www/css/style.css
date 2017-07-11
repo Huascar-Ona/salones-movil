@@ -13,6 +13,11 @@
   max-height: 100%;
 }
 
+.local-img-responsive {
+  width: 100% !important;
+  max-height: 400px;
+}
+
 .full {
   width: 100%;
   height: 100%;
@@ -62,7 +67,7 @@
 
 .pull-right {
   float: right;
-} 
+}
 
 .pull-left {
   float: left;
@@ -185,7 +190,7 @@
   display:inline-block;
 }
 
-.col-md-6 p { 
+.col-md-6 p {
   padding: 0 45px;
 }
 
@@ -213,25 +218,25 @@
 }
 
 .linear-gradient {
-    background: linear-gradient(black, #17bd90); 
+    background: linear-gradient(black, #17bd90);
 }
 
 .linear-gradient-2 {
     background: -moz-linear-gradient(left, #17bd90, black);
     background: -webkit-linear-gradient(left, #17bd90, black);
-    background: linear-gradient(to right, #17bd90, black);  
+    background: linear-gradient(to right, #17bd90, black);
 }
 
 .linear-gradient-3 {
     background: -moz-linear-gradient(left, black, #17bd90);
     background: -webkit-linear-gradient(left, black, #17bd90);
-    background: linear-gradient(to right, black, #17bd90);  
+    background: linear-gradient(to right, black, #17bd90);
 }
 
 .linear-gradient-4 {
     background: -moz-linear-gradient(left, white, black);
     background: -webkit-linear-gradient(left, white, black);
-    background: linear-gradient(to right, white, black);  
+    background: linear-gradient(to right, white, black);
 }
 
 .font-impact {
