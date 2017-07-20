@@ -1,28 +1,73 @@
-<ion-view view-title="{{oferta.attributes.nombre}} ">
-	<ion-content>
+<ion-view view-title="">
+  <ion-content>
     <div class="row item-box">
-      <div class="col-50">
-        <span class="bold">Vence el {{oferta.attributes.fecha_vencimiento}}</span>
-      </div>
-      <div class="col-50">
-        <span class="pull-right bold" ng-if="oferta.attributes.estatus == true">Estatus: Disponible</span>
-        <span class="pull-right bold" ng-if="oferta.attributes.estatus == false">Estatus: No Disponible</span>
+      <div class="col center-alignment">
+        <span class="bold ">{{oferta.attributes.nombre}}</span>
       </div>
     </div>
 
+  <div class="">
+    <img ng-src="{{oferta.attributes.imagen}}" class="local-img-responsive"/>
+  </div>
+
     <div class="row item-box-2">
-      <div class="row">
-        <img ng-src="{{oferta.attributes.imagen}}" class="img-responsive"/>
-        <div class="col-50 item-detail">
-          <span class="pull-left">Descripción:</span> </br>
-          <span class="pull-left bold">{{oferta.attributes.descripcion}}</span>
+      <div class="item-detail">
+        <div class="row">
+              <div class="">
+                  <span class="down-color">Descripción: </span>
+              </div>
+              <div class="">
+                  <span class="space" >{{oferta.attributes.descripcion}}</span>
+            </div>
+        </div> 
+        <div class="divider">
+        </div>
+        <div class="row"> 
+          <div class="">
+              <span class="down-color">Vence el: </span>
+          </div>
+          <div class="">
+              <span class="">{{oferta.attributes.fecha_vencimiento}}</span>
+          </div>
+        </div>
+        <div class="divider">
+        </div>
+        <div class="row">
+          <div class="">
+              <span class="down-color">Estatus: </span>
+          </div>
+          <div class="">
+            <span class="bold" ng-if="oferta.attributes.estatus == 1">Disponible</span>
+            <span class="bold" ng-if="oferta.attributes.estatus == 0">No Disponible</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <button class="button button-balanced full-width">
-      RESERVAR OFERTA
-    </button>
+  <div class="row">
+    <div class="col col-50">
+      <button class="button button-balanced style-button" >
+            RESERVAR OFERTA
+      </button>
+    </div>
+  </div>
 
   </ion-content>
 </ion-view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+        
+        
