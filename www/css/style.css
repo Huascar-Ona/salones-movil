@@ -198,6 +198,10 @@
     text-align: center;
 }
 
+.style-button{
+  width: 100%;
+}
+
 .gallery {
     flex-wrap: wrap;
 }

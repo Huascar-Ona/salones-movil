@@ -1,39 +1,50 @@
-<ion-view view-title="{{local.attributes.nombre}} ">
+<ion-view view-title="">
 	<ion-content>
     <div class="row item-box">
-      <div class="col-50">
-        <span class="bold">Dirección: {{local.attributes.direccion}}</span>
+      <div class="col center-alignment">
+        <span class="bold ">{{local.attributes.nombre}}</span>
       </div>
     </div>
 
-		<div class="">
-			<img ng-src="https://www.petdarling.com/articulos/wp-content/uploads/2016/06/fotos-de-perritos-tiernos.jpg" class="local-img-responsive"/>
-		</div>
+	<div class="">
+		<img ng-src="https://www.petdarling.com/articulos/wp-content/uploads/2016/06/fotos-de-perritos-tiernos.jpg" class="local-img-responsive"/>
+	</div>
 
     <div class="row item-box-2">
-
-      <div class="item-detail">
-        <div class="">
-          <span class="down-color">Horario: </span> </br>
-        </div>
-        <div class="">
-          <span class="" >{{ local.attributes.horario }}</span>
-		    </div>
-      </div>
+		<div class="item-detail">
+			<div class="row">
+	        	<div class="">
+	          		<span class="down-color">Horario: </span>
+	        	</div>
+	        	<div class="">
+	          		<span class="space" >{{ local.attributes.horario }}</span>
+			    </div>
+			</div> 
+			<div class="divider">
+	        </div>
+	        <div class="row"> 
+			    <div class="">
+	        		<span class="down-color">Dirección: </span>
+	    		</div>
+			    <div class="">
+	        		<span class="">{{local.attributes.direccion}}</span>
+	    		</div>
+	    	</div>
+      	</div>
     </div>
 
-		<div class="row">
-			<div class="col col-50">
-				<button class="button button-balanced" style="width: 100%;">
-		      ESTILISTAS
+	<div class="row">
+		<div class="col col-50">
+			<button class="button button-balanced style-button" >
+		      	ESTILISTAS
 		    </button>
-			</div>
-			<div class="col col-50">
-			  <button class="button button-balanced" style="width: 100%;">
-				   RESERVAR
-			  </button>
-			</div>
 		</div>
+		<div class="col col-50">
+			 <button class="button button-balanced style-button" >
+				 RESERVAR
+			 </button>
+		</div>
+	</div>
 
   </ion-content>
 </ion-view>
