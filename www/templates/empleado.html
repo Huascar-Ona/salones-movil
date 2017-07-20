@@ -1,32 +1,74 @@
-<ion-view view-title="{{empleado.attributes.primer_nombre}} {{empleado.attributes.segundo_nombre}} {{empleado.attributes.apellido_paterno}}">
-	<ion-content>
+<ion-view view-title="">
+  <ion-content>
     <div class="row item-box">
-      <div class="col-50">
-        <span class="bold">Puntaje: {{empleado.attributes.puntuacion_promedio}}</span>
-      </div>
-      <div class="col-50">
-        <span class="pull-right bold" ng-if="empleado.attributes.estatus == 1">Estatus: Disponible</span>
-        <span class="pull-right bold" ng-if="empleado.attributes.estatus == 0">Estatus: No Disponible</span>
+      <div class="col center-alignment">
+        <span class="bold ">{{empleado.attributes.primer_nombre}} {{empleado.attributes.segundo_nombre}} {{empleado.attributes.apellido_paterno}}</span>
       </div>
     </div>
+
+  <div class="">
+    <img ng-src="https://www.petdarling.com/articulos/wp-content/uploads/2016/06/fotos-de-perritos-tiernos.jpg" class="local-img-responsive"/>
+  </div>
 
     <div class="row item-box-2">
-      <div class="row">
-        <img ng-src="{{empleado.attributes.imagen}}" class="img-responsive"/>
-        <div class="row item-detail">
-          <div class="col col-10 ">
-            <span class="down-color">Horario: </span> </br> 
-          </div> 
-          <div class="col "> 
-            <span class="space" >{{ empleado.attributes.horario }}</span>
+      <div class="item-detail">
+        <div class="row">
+              <div class="">
+                  <span class="down-color">Horario: </span>
+              </div>
+              <div class="">
+                  <span class="space" >{{ empleado.attributes.horario }}</span>
+            </div>
+        </div> 
+        <div class="divider">
+        </div>
+        <div class="row"> 
+          <div class="">
+              <span class="down-color">Puntaje: </span>
           </div>
-       </div>
-      </div> 
+          <div class="">
+              <span class="">{{empleado.attributes.puntuacion_promedio}}</span>
+              <span class="" ng-if="empleado.attributes.puntuacion == null">No Disponible</span>
+          </div>
+        </div>
+        <div class="divider">
+        </div>
+        <div class="row">
+          <div class="">
+              <span class="down-color">Estatus: </span>
+          </div>
+          <div class="">
+            <span class="bold" ng-if="empleado.attributes.estatus == 1">Disponible</span>
+            <span class="bold" ng-if="empleado.attributes.estatus == 0">No Disponible</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <button class="button button-balanced full-width">
-      SOLICITAR CITA
-    </button>
+  <div class="row">
+    <div class="col col-50">
+      <button class="button button-balanced style-button" >
+            SOLICITAR CITA
+      </button>
+    </div>
+  </div>
 
   </ion-content>
 </ion-view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
