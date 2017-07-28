@@ -1,21 +1,18 @@
 <ion-view view-title="">
   <ion-content>
-    <div class="row item-box">
-      <div class="col center-alignment">
+    <div class="">
+      <img ng-src="{{oferta.attributes.imagen}}" class="local-img-responsive"/>
+    </div>
+
+    <div class="row item-box-4">
+      <div class="col left-alignment">
         <span class="bold ">{{oferta.attributes.nombre}}</span>
       </div>
     </div>
 
-  <div class="">
-    <img ng-src="{{oferta.attributes.imagen}}" class="local-img-responsive"/>
-  </div>
-
     <div class="row item-box-2">
       <div class="item-detail">
         <div class="row">
-              <div class="">
-                  <span class="down-color">Descripción: </span>
-              </div>
               <div class="">
                   <span class="space" >{{oferta.attributes.descripcion}}</span>
             </div>
@@ -24,28 +21,14 @@
         </div>
         <div class="row"> 
           <div class="">
-              <span class="down-color">Vence el:  </span>
-          </div>
-          <div class="">
-              <span class="">{{oferta.attributes.fecha_vencimiento}}</span>
-          </div>
-        </div>
-        <div class="divider">
-        </div>
-        <div class="row">
-          <div class="">
-              <span class="down-color">Estatus: </span>
-          </div>
-          <div class="">
-            <span class="bold" ng-if="oferta.attributes.estatus == 1">Disponible</span>
-            <span class="bold" ng-if="oferta.attributes.estatus == 0">No Disponible</span>
+              <span class="">Vence el: {{oferta.attributes.fecha_vencimiento}}</span>
           </div>
         </div>
       </div>
     </div>
 
   <div class="row">
-    <div class="col col-50">
+    <div class="col ">
       <button class="button button-balanced style-button" >
             RESERVAR OFERTA
       </button>
