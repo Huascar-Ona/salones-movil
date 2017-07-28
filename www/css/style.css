@@ -106,6 +106,13 @@
   background-color: #F8F8F8;
 }
 
+.item-box-4 {
+  padding: 10px 10px 0 10px;
+  background-color: #1ACE9E;
+  color: white;
+  height: 70px;
+}
+
 .input-area {
   padding-bottom: 15px;
 }
@@ -207,7 +214,7 @@
 }
 
 .divider{
-    width:3px;
+    width:2px;
     height:auto;
     display:inline-block;
 }

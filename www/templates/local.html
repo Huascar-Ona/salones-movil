@@ -1,35 +1,30 @@
 <ion-view view-title="">
 	<ion-content>
-    <div class="row item-box">
-      <div class="col center-alignment">
-        <span class="bold ">{{local.attributes.nombre}}</span>
-      </div>
-    </div>
-
 	<div class="">
 		<img ng-src="https://www.petdarling.com/articulos/wp-content/uploads/2016/06/fotos-de-perritos-tiernos.jpg" class="local-img-responsive"/>
 	</div>
 
+	<div class="row item-box-4">
+      <div class="col left-alignment">
+        <span class="bold ">{{local.attributes.nombre}}</span> </br>
+        <span class="">{{local.attributes.direccion}}</span>
+      </div>
+    </div>
+
+    <div class="divider">
+    </div>
+
+    <div class="row items">
+        <div class="col">
+            <b class="">Horario </b>
+        </div>
+    </div>
+
     <div class="row item-box-2">
 		<div class="item-detail">
-			<div class="row">
-	        	<div class="">
-	          		<span class="down-color">Horario: </span>
-	        	</div>
-	        	<div class="">
-	          		<span class="space" >{{ local.attributes.horario }}</span>
-			    </div>
+	        <div class="">
+	          	<span class="space" >{{ local.attributes.horario }}</span>
 			</div> 
-			<div class="divider">
-	        </div>
-	        <div class="row"> 
-			    <div class="">
-	        		<span class="down-color">Dirección: </span>
-	    		</div>
-			    <div class="">
-	        		<span class="">{{local.attributes.direccion}}</span>
-	    		</div>
-	    	</div>
       	</div>
     </div>
 
