@@ -1,6 +1,6 @@
 <ion-view view-title="ofertas">
   <ion-content>
-    	<a ng-repeat="oferta in ofertas | orderBy:'id'" href="#/app/ofertas/{{oferta.id}}" class="item">
+    	<a ng-repeat="oferta in ofertas | orderBy:'id'" href="#/app/ofertas/{{oferta.id}}" ng-if="oferta.estatus == 1" class="item">
         <div class="row">
           <div class="col">
               <span class="">{{ oferta.nombre }}</span> </br>

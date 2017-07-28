@@ -1,23 +1,14 @@
 <ion-view view-title="Estilistas">
   <ion-content>
     <ion-list ng-repeat="empleado in empleados | orderBy:'id'">
-    	<a class="row item-detail" href="#/app/empleados/{{empleado.id}}">
+    	<a class="row item-detail" ng-if="empleado.estatus == 1" href="#/app/empleados/{{empleado.id}}">
 	    	<div class="row">
 	    		<div class="col col-80">
 	    			<div class="col no-bottom-padding some-left-padding">
 			            <span class="">{{ empleado.primer_nombre }} </span> 
 			            <span class="">{{ empleado.segundo_nombre }} </span>
 			            <span class="">{{ empleado.apellido_paterno }}</span> </br>
-			            <b ng-if="empleado.rol == 2">Estilista</b>
-			            <b ng-if="empleado.rol == 3">Maquillador</b>
-			            <b ng-if="empleado.rol == 4">Manicurista</b>
-			            <b ng-if="empleado.rol == 5">Masajista</b>
-			            <b ng-if="empleado.rol == 6">Administración</b>
-			            <b ng-if="empleado.rol == 7">Asistente</b>
-			            <b ng-if="empleado.rol == 8">Servicio</b>
-			            <b ng-if="empleado.rol == 9">Recepcionista</b>
-			            <b ng-if="empleado.rol == 10">Repartidor</b>
-		  				<b ng-if="empleado.rol == 11">Asociado</b> </br>
+			            <span class="">{{ empleado.rol }}</span> </br>
 			            <span class="">Encuéntrame en </span> 
 			            <span class="">{{ empleado.local }}</span> </br> 
 			        </div>
@@ -27,5 +18,6 @@
 		        </div>
 		    </div>
 		</a>
+	 </ion-list>
   </ion-content>
 </ion-view>
